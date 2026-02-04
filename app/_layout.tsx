@@ -1,5 +1,5 @@
-import { useColorScheme } from "@/components/useColorScheme";
 import { store } from "@/store";
+import { theme } from "@/theme";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -47,14 +47,11 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
   return (
     <StoreProvider store={store}>
-      <PaperProvider>
+      <PaperProvider theme={theme}>
         <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+          <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
         </Stack>
       </PaperProvider>
     </StoreProvider>
