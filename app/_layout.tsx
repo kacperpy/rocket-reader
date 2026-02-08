@@ -28,8 +28,6 @@ export const unstable_settings = {
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-SystemUI.setBackgroundColorAsync(theme.colors.background);
-
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     Lexend_400Regular,
@@ -45,6 +43,8 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded) {
+      // Set background color after fonts are loaded to avoid white screen during navigation
+      SystemUI.setBackgroundColorAsync(theme.colors.background);
       SplashScreen.hideAsync();
     }
   }, [loaded]);
@@ -60,7 +60,13 @@ function RootLayoutNav() {
   return (
     <StoreProvider store={store}>
       <PaperProvider theme={theme}>
-        <Stack>
+        <Stack
+          screenOptions={{
+            contentStyle: {
+              backgroundColor: theme.colors.background,
+            },
+          }}
+        >
           <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
         </Stack>
       </PaperProvider>
