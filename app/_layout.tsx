@@ -1,9 +1,15 @@
 import { store } from "@/store";
 import { theme } from "@/theme";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
+import {
+  Lexend_400Regular,
+  Lexend_500Medium,
+  Lexend_600SemiBold,
+  Lexend_700Bold,
+} from "@expo-google-fonts/lexend";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
+import * as SystemUI from "expo-system-ui";
 import React, { useEffect } from "react";
 import { PaperProvider } from "react-native-paper";
 import "react-native-reanimated";
@@ -22,10 +28,14 @@ export const unstable_settings = {
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
+SystemUI.setBackgroundColorAsync(theme.colors.background);
+
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-    ...FontAwesome.font,
+    Lexend_400Regular,
+    Lexend_500Medium,
+    Lexend_600SemiBold,
+    Lexend_700Bold,
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.

@@ -61,7 +61,17 @@ export default function PausableText({
   useEffect(() => {
     if (!playing || currentWordIndex >= parsedWords.length) return;
 
-    const baseMillisecondsPerWord = 60000 / speed;
+    let speedMultiplier = 1;
+    if (speed < 350) {
+      speedMultiplier = 1.4;
+    }
+    if (speed >= 350 && speed <= 500) {
+      speedMultiplier = 1.5;
+    }
+    if (speed > 500) {
+      speedMultiplier = 1.6;
+    }
+    const baseMillisecondsPerWord = 60000 / (speed * speedMultiplier);
     const millisecondsPerWord =
       baseMillisecondsPerWord * currentToken.pauseMultiplier;
 
@@ -157,12 +167,14 @@ const styles = StyleSheet.create({
     color: theme.colors.textPrimary,
     fontWeight: "600",
     fontSize: BASE_FONT_SIZE,
+    fontFamily: "Lexend",
   },
 
   focusLetter: {
     textAlign: "center",
     color: theme.colors.primary,
     fontWeight: "700",
+    fontFamily: "Lexend",
   },
 
   after: {
@@ -170,6 +182,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
     color: theme.colors.textPrimary,
     fontWeight: "600",
+    fontFamily: "Lexend",
   },
 
   progress: {

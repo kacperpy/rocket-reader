@@ -1,9 +1,11 @@
+import { DottedBackground } from "@/components/DottedBackground";
 import PausableText from "@/components/PausableText";
+import { TempoController } from "@/components/TempoController";
 import { demoText } from "@/constants/demo";
 import { theme } from "@/theme";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Button, Icon, Text, TouchableRipple } from "react-native-paper";
+import { Button, Icon, TouchableRipple } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function DemoScreen() {
@@ -26,34 +28,8 @@ export default function DemoScreen() {
       contentContainerStyle={{ flex: 1 }}
     >
       <SafeAreaView style={styles.container}>
-        <View style={styles.tempoControlsContainer}>
-          <View style={styles.tempoControl}>
-            <TouchableRipple
-              rippleColor="transparent"
-              onPress={() => setSpeed(Math.max(speed - 10, 0))}
-            >
-              <Icon
-                source={"minus-circle"}
-                color={theme.colors.textSecondary}
-                size={32}
-              />
-            </TouchableRipple>
-            <Text
-              style={styles.tempoText}
-              variant="bodyMedium"
-            >{`${speed} WPM`}</Text>
-            <TouchableRipple
-              rippleColor="transparent"
-              onPress={() => setSpeed(Math.min(speed + 10, 900))}
-            >
-              <Icon
-                source={"plus-circle"}
-                color={theme.colors.textSecondary}
-                size={32}
-              />
-            </TouchableRipple>
-          </View>
-        </View>
+        <DottedBackground color={theme.colors.tertiary} />
+        <TempoController speed={speed} setSpeed={setSpeed} />
         <TouchableRipple
           onPress={() => setPlaying((prev) => !prev)}
           rippleColor="transparent"

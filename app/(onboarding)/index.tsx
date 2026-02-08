@@ -1,4 +1,5 @@
 import { CheckableLabel } from "@/components/CheckableLabel";
+import { DottedBackground } from "@/components/DottedBackground";
 import { theme } from "@/theme";
 import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, View } from "react-native";
@@ -12,6 +13,7 @@ export default function WelcomeScreen() {
       contentContainerStyle={styles.container}
       style={{ backgroundColor: theme.colors.background }}
     >
+      <DottedBackground color={theme.colors.tertiary} />
       <View style={styles.textContainer}>
         <Text variant="headlineLarge" style={styles.header}>
           Read Faster Than Ever
@@ -21,11 +23,11 @@ export default function WelcomeScreen() {
         </Text>
       </View>
       <View style={styles.borderedContainer}>
-        <Text style={styles.focusHeader} variant="labelLarge">
+        <Text style={styles.focusHeader} variant="headlineLarge">
           FO
           <Text
             style={[styles.focusHeader, { color: theme.colors.primary }]}
-            variant="labelLarge"
+            variant="headlineLarge"
           >
             C
           </Text>
@@ -34,14 +36,14 @@ export default function WelcomeScreen() {
         <View style={styles.subFocusContainer}>
           <View style={styles.line} />
           <Text style={styles.subText} variant="bodyLarge">
-            500+ WPM
+            400+ WPM
           </Text>
           <View style={styles.line} />
         </View>
       </View>
       <View>
         <CheckableLabel
-          label="500+ WPM speed target"
+          label="400+ WPM speed target"
           subLabel="Break through your reading plateau"
           iconLeft={
             <Icon source="speedometer" color={theme.colors.primary} size={20} />
@@ -115,8 +117,15 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     paddingVertical: 64,
     borderColor: theme.colors.tertiary,
-    borderWidth: 1,
+    borderWidth: 2,
     gap: 12,
+
+    shadowColor: theme.colors.tertiary,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.6,
+    shadowRadius: 10,
+
+    elevation: 12,
   },
   subFocusContainer: {
     display: "flex",
@@ -129,7 +138,7 @@ const styles = StyleSheet.create({
     fontWeight: 800,
     fontSize: 48,
     lineHeight: 48,
-    letterSpacing: 6,
+    letterSpacing: 4,
   },
   line: {
     height: 4,
